@@ -67,7 +67,8 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $menu=Menu::find($id);
+        return view('menu.edit')->with('menu',$menu);
     }
 
     /**
@@ -79,7 +80,16 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $menu=Menu::find($id);
+        $menu->codigo=$request->get('codigo');
+        $menu->entradas=$request->get('entradas');
+        $menu->comida=$request->get('comida');
+        $menu->bebidas=$request->get('bebidas');
+        $menu->postres=$request->get('postres');
+        $menu->cantidad=$request->get('cantidad');
+        $menu->precio=$request->get('precio');
+        $menu->save();
+        return redirect('/menu');
     }
 
     /**
@@ -91,5 +101,8 @@ class MenuController extends Controller
     public function destroy($id)
     {
         //
+        $menu=Menu::find($id);
+        $menu->delete();
+        return redirect('/menu');
     }
 }

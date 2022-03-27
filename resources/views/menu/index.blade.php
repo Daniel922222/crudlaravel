@@ -41,8 +41,12 @@
            <td>{{$menu->cantidad}}</td>
            <td>{{$menu->precio}}</td>
            <td>
-             <a class="btn btn-info">Editar</a>
-             <button class="btn btn-danger">Borrar</button>
+           <form action="{{ route('menu.destroy',$menu->id) }}" method="POST">
+           <a href='/menu/{{$menu->id}}/edit'   class="btn btn-info">Editar</a>
+              @csrf
+              @method('DELETE')
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+         </form>
            </td>
          </tr>   
          @endforeach
